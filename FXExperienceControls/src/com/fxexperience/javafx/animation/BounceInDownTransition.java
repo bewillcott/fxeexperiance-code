@@ -8,9 +8,10 @@ import javafx.util.Duration;
 
 /**
  * Animate a bounce in down big effect on a node
- * 
+ * <p>
  * Port of BounceInDownBig from Animate.css http://daneden.me/animate by Dan Eden
- * 
+ * <p>
+ * <pre><code>
  * {@literal @}keyframes  bounceInDown {
  * 	0% {
  * 		opacity: 0;
@@ -27,13 +28,15 @@ import javafx.util.Duration;
  * 		-webkit-transform: translateY(0);
  * 	}
  * }
- * 
+ * </code></pre>
+ *
  * @author Jasper Potts
  */
 public class BounceInDownTransition extends CachedTimelineTransition {
+
     /**
      * Create new BounceInDownBigTransition
-     * 
+     *
      * @param node The node to affect
      */
     public BounceInDownTransition(final Node node) {
@@ -42,24 +45,25 @@ public class BounceInDownTransition extends CachedTimelineTransition {
         setDelay(Duration.seconds(0.2));
     }
 
-    @Override protected void starting() {
-        double startY = -node.localToScene(0, 0).getY() -node.getBoundsInParent().getHeight();
+    @Override
+    protected void starting() {
+        double startY = -node.localToScene(0, 0).getY() - node.getBoundsInParent().getHeight();
         timeline = TimelineBuilder.create()
                 .keyFrames(
-                    new KeyFrame(Duration.millis(0),    
-                        new KeyValue(node.opacityProperty(), 0, WEB_EASE),
-                        new KeyValue(node.translateYProperty(), startY, WEB_EASE)
-                    ),
-                    new KeyFrame(Duration.millis(600),    
-                        new KeyValue(node.opacityProperty(), 1, WEB_EASE),
-                        new KeyValue(node.translateYProperty(), 30, WEB_EASE)
-                    ),
-                    new KeyFrame(Duration.millis(800),    
-                        new KeyValue(node.translateYProperty(), -10, WEB_EASE)
-                    ),
-                    new KeyFrame(Duration.millis(1000),    
-                        new KeyValue(node.translateYProperty(), 0, WEB_EASE)
-                    )
+                        new KeyFrame(Duration.millis(0),
+                                     new KeyValue(node.opacityProperty(), 0, WEB_EASE),
+                                     new KeyValue(node.translateYProperty(), startY, WEB_EASE)
+                        ),
+                        new KeyFrame(Duration.millis(600),
+                                     new KeyValue(node.opacityProperty(), 1, WEB_EASE),
+                                     new KeyValue(node.translateYProperty(), 30, WEB_EASE)
+                        ),
+                        new KeyFrame(Duration.millis(800),
+                                     new KeyValue(node.translateYProperty(), -10, WEB_EASE)
+                        ),
+                        new KeyFrame(Duration.millis(1000),
+                                     new KeyValue(node.translateYProperty(), 0, WEB_EASE)
+                        )
                 )
                 .build();
         super.starting();
